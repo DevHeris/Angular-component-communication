@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Child Component</h2>
+  <h4>Tasks</h4>
+  <ol>
+    <li *ngFor="let task of tasks">
+      <h6>
+        <strong>{{ task.taskName?.toUpperCase() }}</strong>
+      </h6>
+      <p>{{ task.taskDescription }}</p>
+      <p>
+        Status :
+        <span
+          [ngStyle]="{
+            color: task.taskStatus === 'completed' ? 'green' : 'red'
+          }"
+          >{{ task.taskStatus }}
+        </span>
+      </p>
+      Completed
+      <input
+        type="checkbox"
+        name="taskStatus"
+        (change)="updateStatus($event, task)"
+      />
+      <hr />
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,13 @@
+h1 {
+    text-align: center
+}
+
+.notification {
+    border: 2px solid green;
+    padding: 1em;
+    width: 30%;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.2em;
+    background-color: lightgreen;
+}

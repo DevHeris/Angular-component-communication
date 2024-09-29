@@ -1,0 +1,76 @@
+<!-- Exercise: Task Manager with Parent-Child Communication
+Objective:
+Create a simple task manager app where the parent component adds tasks and the child component displays them. The child component can also notify the parent when a task is marked as completed.
+
+Requirements:
+ParentComponent:
+
+Contains a form to add a new task (with fields for task name and description).
+Each task should have a status (pending by default).
+The tasks are passed down to the child component to display in a list.
+Handles a custom event emitted by the child component when a task is marked as completed.
+ChildComponent:
+
+Receives a list of tasks from the parent component using @Input().
+Displays the task name, description, and status (either "pending" or "completed").
+Contains a button for each task that, when clicked, marks it as completed and notifies the parent using @Output().
+Key Tasks:
+ParentComponent:
+
+Create a form to add a task (task name and description).
+Maintain a list of tasks with their statuses.
+Pass the list of tasks to the child component using @Input().
+Handle the custom event from the child when a task is marked as completed.
+ChildComponent:
+
+Receive the list of tasks from the parent using @Input().
+Display each task with its status and a button to mark the task as completed.
+Emit an event back to the parent using @Output() when the task is marked as completed.
+Example Scenario:
+The parent component has a form to create tasks.
+Once a task is added, it's displayed by the child component with a "Complete" button.
+When the "Complete" button is clicked, the child component notifies the parent, and the status of the task is updated.
+Expected Result:
+You should be able to:
+
+Pass a list of tasks from the parent to the child.
+Display tasks in the child component and mark them as complete.
+Notify the parent when a task is marked as completed, and the parent should update the task's status.
+ -->
+<div class="notification">
+  {{ notificationMessage || "No new notification!" }}
+</div>
+
+<div class="container">
+  <h1>Task Manager with Parent-Child Communication</h1>
+  <p>
+    <strong>Overview</strong> : A simple task manager app where the parent
+    component adds tasks and the child component displays them. The child
+    component can also notify the parent when a task is marked as completed.
+  </p>
+  <label for="taskName">Task name</label>
+  <br />
+  <input
+    type="text"
+    id="taskName"
+    class="form-control"
+    [(ngModel)]="taskName"
+  />
+  <br /><br />
+  <label for="taskDescription">Task Description</label>
+  <br />
+  <input
+    type="text"
+    id="taskDescription"
+    class="form-control"
+    [(ngModel)]="taskDescription"
+  />
+  <br />
+  <br />
+  <button class="btn btn-success" (click)="onCreateTask()">Create Task</button>
+</div>
+
+<app-child-component
+  [tasks]="tasks"
+  (taskCompleted)="recieveNotification($event)"
+></app-child-component>
